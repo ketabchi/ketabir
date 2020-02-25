@@ -113,13 +113,7 @@ func TestAuthors(t *testing.T) {
 			t.Errorf("Test %d: Error on creating book from %s: %s",
 				i, test.url, err)
 		}
-
-		authors, ss := make([]string, 0), book.Authors()
-		for _, s := range ss {
-			authors = append(authors, s[0])
-		}
-
-		if !util.CheckSliceEq(authors, test.exp) {
+		if authors := book.Authors(); !util.CheckSliceEq(authors, test.exp) {
 			t.Errorf("Test %d: Expected authors %q, but got %q",
 				i, test.exp, authors)
 		}

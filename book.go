@@ -45,8 +45,8 @@ func (b *Book) Publisher() (publisher string) {
 	return b.doc.Find("#ctl00_ContentPlaceHolder1_rptPublisher_ctl00_NameLabel").Text()
 }
 
-func (b *Book) Authors() [][]string {
-	authors := make([][]string, 0)
+func (b *Book) Authors() []string {
+	authors := make([]string, 0)
 	b.doc.Find("#ctl00_ContentPlaceHolder1_rptAuthor span").EachWithBreak(
 		func(i int, sel *goquery.Selection) bool {
 			s := sel.Text()
@@ -55,7 +55,7 @@ func (b *Book) Authors() [][]string {
 			}
 
 			s = strings.Replace(s, "نويسنده:", "", -1)
-			authors = append(authors, []string{strings.TrimSpace(s), ""})
+			authors = append(authors, strings.TrimSpace(s))
 
 			return true
 		})
