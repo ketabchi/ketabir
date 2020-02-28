@@ -6,6 +6,22 @@ import (
 	"github.com/ketabchi/util"
 )
 
+func TestNewBookByISBN(t *testing.T) {
+	tests := []struct {
+		isbn   string
+		expErr error
+	}{
+		{"", NoBookErr},
+		{"9782000794981", NoBookErr},
+	}
+	for i, test := range tests {
+		if _, err := NewBookByISBN(test.isbn); err != test.expErr {
+			t.Errorf("Test %d: Expected error %s, but got %s",
+				i, test.expErr, err)
+		}
+	}
+}
+
 func TestName(t *testing.T) {
 	tests := []struct {
 		url string

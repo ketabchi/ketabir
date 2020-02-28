@@ -22,6 +22,10 @@ func SetClient(c *http.Client) {
 var chapRe = regexp.MustCompile(`چاپ ([\d]+) سال`)
 
 func GetBookURLByISBN(isbn string) (string, error) {
+	if isbn == "" {
+		return "", nil
+	}
+
 	body, err := createPostBodyISBN(isbn)
 	if err != nil {
 		return "", err
@@ -47,28 +51,29 @@ func GetBookURLByISBN(isbn string) (string, error) {
 		return "", err
 	}
 
-	link, chap := "", 0
-	doc.Find("#ctl00_ContentPlaceHolder1_DataList1 > tbody > tr").EachWithBreak(
-		func(i int, sel *goquery.Selection) bool {
-			s := sel.Find("tr:nth-child(2) span").Text()
-			ss := chapRe.FindStringSubmatch(s)
-			if len(ss) < 2 {
-				return true
-			}
-
-			ch, _ := strconv.Atoi(ss[1])
-			if ch > chap {
-				chap = ch
-				href, _ := sel.Find(".HyperLink2").Attr("href")
-
-				link = fmt.Sprintf("http://ketab.ir%s", href)
-			}
-
-			return true
-		})
-	if link == "" {
-		return "", fmt.Errorf("couldnt find %s link", isbn)
+	el := doc.Find("#ctl00_ContentPlaceHolder1_DataList1 > tbody > tr")
+	if el.Length() == 0 {
+		return "", nil
 	}
+
+	link, chap := "", 0
+	el.EachWithBreak(func(i int, sel *goquery.Selection) bool {
+		s := sel.Find("tr:nth-child(2) span").Text()
+		ss := chapRe.FindStringSubmatch(s)
+		if len(ss) < 2 {
+			return true
+		}
+
+		ch, _ := strconv.Atoi(ss[1])
+		if ch > chap {
+			chap = ch
+			href, _ := sel.Find(".HyperLink2").Attr("href")
+
+			link = fmt.Sprintf("http://ketab.ir%s", href)
+		}
+
+		return true
+	})
 
 	return link, nil
 }
