@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/antzucaro/matchr"
 )
 
 var client = &http.Client{}
@@ -21,7 +22,7 @@ func SetClient(c *http.Client) {
 
 var chapRe = regexp.MustCompile(`چاپ ([\d]+) سال`)
 
-func GetBookURLByISBN(isbn string) (string, error) {
+func GetBookURLByISBN(isbn string, args ...string) (string, error) {
 	if isbn == "" {
 		return "", nil
 	}
@@ -51,12 +52,8 @@ func GetBookURLByISBN(isbn string) (string, error) {
 		return "", err
 	}
 
-	el := doc.Find("#ctl00_ContentPlaceHolder1_DataList1 > tbody > tr")
-	if el.Length() == 0 {
-		return "", nil
-	}
-
 	link, chap := "", 0
+	el := doc.Find("#ctl00_ContentPlaceHolder1_DataList1 > tbody > tr")
 	el.EachWithBreak(func(i int, sel *goquery.Selection) bool {
 		s := sel.Find("tr:nth-child(2) span").Text()
 		ss := chapRe.FindStringSubmatch(s)
@@ -64,12 +61,26 @@ func GetBookURLByISBN(isbn string) (string, error) {
 			return true
 		}
 
-		ch, _ := strconv.Atoi(ss[1])
-		if ch > chap {
-			chap = ch
-			href, _ := sel.Find(".HyperLink2").Attr("href")
+		pass := true
+		if len(args) > 0 {
+			title := sel.Find(".HyperLink2").Text()
+			title = strings.TrimSpace(title)
+			tmp := matchr.SmithWaterman(args[0], title)
+			tmp /= float64(len([]rune(args[0])))
 
-			link = fmt.Sprintf("http://ketab.ir%s", href)
+			if tmp <= 0.2 {
+				pass = false
+			}
+		}
+
+		if pass {
+			ch, _ := strconv.Atoi(ss[1])
+			if ch > chap {
+				chap = ch
+				href, _ := sel.Find(".HyperLink2").Attr("href")
+
+				link = fmt.Sprintf("http://ketab.ir%s", href)
+			}
 		}
 
 		return true
