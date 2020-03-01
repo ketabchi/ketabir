@@ -21,11 +21,7 @@ type urlFinder struct {
 	doc    *goquery.Document
 }
 
-var client = &http.Client{}
-
-func SetClient(c *http.Client) {
-	client = c
-}
+var Client = &http.Client{}
 
 var chapRe = regexp.MustCompile(`چاپ ([\d]+) سال`)
 
@@ -34,7 +30,7 @@ func GetBookURLByISBN(isbn string, args ...string) (string, error) {
 		return "", nil
 	}
 
-	uf := &urlFinder{isbn: isbn, client: *client}
+	uf := &urlFinder{isbn: isbn, client: *Client}
 	if len(args) > 0 {
 		uf.title = args[0]
 	}
