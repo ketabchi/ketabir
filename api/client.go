@@ -41,10 +41,10 @@ func GetBookURLByISBN(isbn string, args ...string) (string, error) {
 	}
 
 	req, err := http.NewRequest("POST", "http://ketab.ir/Search.aspx", body)
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	if err != nil {
 		return "", err
 	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	res, err := uf.client.Do(req)
 	if err != nil {
