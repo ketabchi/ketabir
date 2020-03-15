@@ -175,3 +175,39 @@ func TestTranslators(t *testing.T) {
 		}
 	}
 }
+
+func TestPDF(t *testing.T) {
+	tests := []struct {
+		url string
+		exp string
+	}{
+		{
+			"http://ketab.ir/bookview.aspx?bookid=2273622",
+			"http://164.138.18.205/DataBase/bookpdf/97/97607208.pdf",
+		},
+		{
+			"http://ketab.ir/bookview.aspx?bookid=2425864",
+			"http://164.138.18.205/DataBase/bookpdf/98/98829119.pdf",
+		},
+		{
+			"http://ketab.ir/bookview.aspx?bookid=2402503",
+			"http://164.138.18.205/DataBase/bookpdf/98/98613193.pdf",
+		},
+		{
+			"http://ketab.ir/bookview.aspx?bookid=2359448",
+			"http://164.138.18.205/DataBase/bookpdf/98/98119093.pdf",
+		},
+	}
+
+	for i, test := range tests {
+		book, err := NewBook(test.url)
+		if err != nil {
+			t.Errorf("Test %d: Error on creating book from %s: %s",
+				i, test.url, err)
+		}
+		if u := book.PDF(); u != test.exp {
+			t.Errorf("Test %d: Expected pdf '%s', but got '%s'",
+				i, test.exp, u)
+		}
+	}
+}

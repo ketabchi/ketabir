@@ -84,3 +84,8 @@ func (b *Book) Translators() []string {
 func (b *Book) Link() string {
 	return b.url
 }
+
+func (b *Book) PDF() string {
+	u, _ := b.doc.Find("#ctl00_ContentPlaceHolder1_HyperLinkpdf").Attr("href")
+	return u
+}
