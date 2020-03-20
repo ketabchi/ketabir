@@ -2,11 +2,12 @@ package ketabir
 
 import (
 	"errors"
+	"net/http"
 	"strings"
 
-	"github.com/PuerkitoBio/goquery"
-
 	"github.com/ketabchi/ketabir/api"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 type Book struct {
@@ -87,5 +88,13 @@ func (b *Book) Link() string {
 
 func (b *Book) PDF() string {
 	u, _ := b.doc.Find("#ctl00_ContentPlaceHolder1_HyperLinkpdf").Attr("href")
+	if u == "" {
+		return u
+	}
+
+	if res, err := http.Head(u); err == nil && res.StatusCode != 200 {
+		u = ""
+	}
+
 	return u
 }

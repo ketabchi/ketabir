@@ -197,6 +197,10 @@ func TestPDF(t *testing.T) {
 			"http://ketab.ir/bookview.aspx?bookid=2359448",
 			"http://164.138.18.205/DataBase/bookpdf/98/98119093.pdf",
 		},
+		{
+			"http://ketab.ir/bookview.aspx?bookid=1633036",
+			"",
+		},
 	}
 
 	for i, test := range tests {
