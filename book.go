@@ -42,8 +42,9 @@ func (b *Book) Name() string {
 	return b.doc.Find("#ctl00_ContentPlaceHolder1_lblBookTitle").Text()
 }
 
-func (b *Book) Publisher() (publisher string) {
-	return b.doc.Find("#ctl00_ContentPlaceHolder1_rptPublisher_ctl00_NameLabel").Text()
+func (b *Book) Publisher() string {
+	s := b.doc.Find("#ctl00_ContentPlaceHolder1_rptPublisher_ctl00_NameLabel").Text()
+	return strings.TrimSpace(s)
 }
 
 func (b *Book) Authors() []string {
