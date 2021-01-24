@@ -11,17 +11,17 @@ func TestGetBookURLByISBN(t *testing.T) {
 		{
 			"9789643113445",
 			nil,
-			"http://ketab.ir/bookview.aspx?bookid=2453934",
+			"https://db.ketab.ir/bookview.aspx?bookid=2476393",
 		},
 		{
 			"9789646235793",
 			nil,
-			"http://ketab.ir/bookview.aspx?bookid=2425864",
+			"https://db.ketab.ir/bookview.aspx?bookid=2425864",
 		},
 		{
 			"9786002571755",
 			[]string{"توانبخشی مبتنی بر جامعه شهری (براساس تجربه مددکاران اجتماعی در شهرستان قدس)"},
-			"http://ketab.ir/bookview.aspx?bookid=2202390",
+			"https://db.ketab.ir/bookview.aspx?bookid=2202390",
 		},
 	}
 

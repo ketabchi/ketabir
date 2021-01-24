@@ -93,8 +93,9 @@ func (b *Book) PDF() string {
 		return u
 	}
 
-	if res, err := http.Head(u); err == nil && res.StatusCode != 200 {
-		u = ""
+	res, err := http.Head(u)
+	if err != nil || (res.StatusCode != 200 && res.StatusCode != 416) {
+		return ""
 	}
 
 	return u

@@ -40,7 +40,7 @@ func GetBookURLByISBN(isbn string, args ...string) (string, error) {
 		return "", err
 	}
 
-	req, err := http.NewRequest("POST", "http://ketab.ir/Search.aspx", body)
+	req, err := http.NewRequest("POST", "https://db.ketab.ir/Search.aspx", body)
 	if err != nil {
 		return "", err
 	}
@@ -64,7 +64,7 @@ func GetBookURLByISBN(isbn string, args ...string) (string, error) {
 }
 
 func (uf *urlFinder) createBody() (io.Reader, error) {
-	res, err := uf.client.Get("http://ketab.ir/Search.aspx")
+	res, err := uf.client.Get("https://db.ketab.ir/Search.aspx")
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +105,7 @@ func (uf *urlFinder) createBody() (io.Reader, error) {
 }
 
 func (uf *urlFinder) setCookies(cs []*http.Cookie) error {
-	u, err := url.Parse("http://ketab.ir")
+	u, err := url.Parse("https://db.ketab.ir")
 	if err != nil {
 		return err
 	}
@@ -149,7 +149,7 @@ func (uf *urlFinder) find() (link string) {
 				chap = ch
 				href, _ := sel.Find(".HyperLink2").Attr("href")
 
-				link = fmt.Sprintf("http://ketab.ir%s", href)
+				link = fmt.Sprintf("https://db.ketab.ir%s", href)
 			}
 		}
 

@@ -28,31 +28,31 @@ func TestName(t *testing.T) {
 		exp string
 	}{
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2273622",
+			"https://db.ketab.ir/bookview.aspx?bookid=2273622",
 			"سمفونی مردگان",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2425864",
+			"https://db.ketab.ir/bookview.aspx?bookid=2425864",
 			"شغل مناسب شما: با توجه به ویژگی‌های شخصیتی خود کارتان را انتخاب کنید، جویندگان کار چگونه کار مورد علاقه خود را انتخاب کنند",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2402503",
+			"https://db.ketab.ir/bookview.aspx?bookid=2402503",
 			"مدیریت اجرایی MBA) for dummies)",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2359448",
+			"https://db.ketab.ir/bookview.aspx?bookid=2359448",
 			"شدن",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=1871774",
+			"https://db.ketab.ir/bookview.aspx?bookid=1871774",
 			"طلبه زیستن: پژوهشی مقدماتی در سنخ‌شناسی جامعه‌شناختی زیست‌طلبگی",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=1809369",
+			"https://db.ketab.ir/bookview.aspx?bookid=1809369",
 			"ارتباط رو در رو: کلید موفقیت برای مدیریت موثر و کارا (مجموعه مقالاتی از دانشگاه هاروارد)",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=1911364",
+			"https://db.ketab.ir/bookview.aspx?bookid=1911364",
 			"دریدا و فلسفه",
 		},
 	}
@@ -77,19 +77,19 @@ func TestPublisher(t *testing.T) {
 		exp string
 	}{
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2273622",
+			"https://db.ketab.ir/bookview.aspx?bookid=2273622",
 			"ققنوس",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2425864",
+			"https://db.ketab.ir/bookview.aspx?bookid=2425864",
 			"نقش و نگار",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2402503",
+			"https://db.ketab.ir/bookview.aspx?bookid=2402503",
 			"آوند دانش",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2359448",
+			"https://db.ketab.ir/bookview.aspx?bookid=2359448",
 			"مهراندیش",
 		},
 	}
@@ -114,11 +114,11 @@ func TestAuthors(t *testing.T) {
 		exp []string
 	}{
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2327303",
+			"https://db.ketab.ir/bookview.aspx?bookid=2327303",
 			[]string{"گری نورتفیلد"},
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2402503",
+			"https://db.ketab.ir/bookview.aspx?bookid=2402503",
 			[]string{"کتلین‌آر. الن", "پیتر اکونومی"},
 		},
 	}
@@ -142,23 +142,23 @@ func TestTranslators(t *testing.T) {
 		exp []string
 	}{
 		{
-			"http://ketab.ir/bookview.aspx?bookid=1839057",
+			"https://db.ketab.ir/bookview.aspx?bookid=1839057",
 			[]string{"محمدرضا طبیب‌زاده"},
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2368628",
+			"https://db.ketab.ir/bookview.aspx?bookid=2368628",
 			[]string{},
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2319963",
+			"https://db.ketab.ir/bookview.aspx?bookid=2319963",
 			[]string{"پریسا صیادی", "سرور صیادی"},
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2364768",
+			"https://db.ketab.ir/bookview.aspx?bookid=2364768",
 			[]string{"عادل فردوسی‌پور", "علی شهروزستوده", "بهزاد توکلی‌نیشابوری"},
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2313586",
+			"https://db.ketab.ir/bookview.aspx?bookid=2313586",
 			[]string{"امیرحسین میرزائیان", "عبدالرضا شهبازی"},
 		},
 	}
@@ -182,23 +182,23 @@ func TestPDF(t *testing.T) {
 		exp string
 	}{
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2273622",
-			"http://164.138.18.205/DataBase/bookpdf/97/97607208.pdf",
+			"https://db.ketab.ir/bookview.aspx?bookid=2273622",
+			"http://pic.ketab.ir/DataBase/bookpdf/97/97607208.pdf",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2425864",
-			"http://164.138.18.205/DataBase/bookpdf/98/98829119.pdf",
+			"https://db.ketab.ir/bookview.aspx?bookid=2425864",
+			"http://pic.ketab.ir/DataBase/bookpdf/98/98829119.pdf",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2402503",
-			"http://164.138.18.205/DataBase/bookpdf/98/98613193.pdf",
+			"https://db.ketab.ir/bookview.aspx?bookid=2402503",
+			"http://pic.ketab.ir/DataBase/bookpdf/98/98613193.pdf",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=2359448",
-			"http://164.138.18.205/DataBase/bookpdf/98/98119093.pdf",
+			"https://db.ketab.ir/bookview.aspx?bookid=2359448",
+			"http://pic.ketab.ir/DataBase/bookpdf/98/98119093.pdf",
 		},
 		{
-			"http://ketab.ir/bookview.aspx?bookid=1633036",
+			"https://db.ketab.ir/bookview.aspx?bookid=1633036",
 			"",
 		},
 	}
