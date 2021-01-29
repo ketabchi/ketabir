@@ -2,7 +2,6 @@ package ketabir
 
 import (
 	"errors"
-	"net/http"
 	"strings"
 
 	"github.com/ketabchi/ketabir/api"
@@ -93,7 +92,7 @@ func (b *Book) PDF() string {
 		return u
 	}
 
-	res, err := http.Head(u)
+	res, err := api.Client.Head(u)
 	if err != nil || (res.StatusCode != 200 && res.StatusCode != 416) {
 		return ""
 	}
