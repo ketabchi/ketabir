@@ -11,8 +11,8 @@ func TestNewBookByISBN(t *testing.T) {
 		isbn   string
 		expErr error
 	}{
-		{"", NoBookErr},
-		{"9782000794981", NoBookErr},
+		{"", ErrNoBook},
+		{"9782000794981", ErrNoBook},
 	}
 	for i, test := range tests {
 		if _, err := NewBookByISBN(test.isbn); err != test.expErr {

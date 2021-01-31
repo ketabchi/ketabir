@@ -14,7 +14,7 @@ type Book struct {
 	doc *goquery.Document
 }
 
-var NoBookErr = errors.New("no book with this isbn")
+var ErrNoBook = errors.New("no book with this isbn")
 
 func NewBookByISBN(isbn string, args ...string) (*Book, error) {
 	url, err := api.GetBookURLByISBN(isbn, args...)
@@ -22,7 +22,7 @@ func NewBookByISBN(isbn string, args ...string) (*Book, error) {
 		return nil, err
 	}
 	if url == "" {
-		return nil, NoBookErr
+		return nil, ErrNoBook
 	}
 
 	return NewBook(url)
