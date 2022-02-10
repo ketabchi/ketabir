@@ -55,7 +55,7 @@ func (b *Book) Authors() []string {
 				return true
 			}
 
-			s = strings.Replace(s, "نويسنده:", "", -1)
+			s = strings.ReplaceAll(s, "نويسنده:", "")
 			authors = append(authors, strings.TrimSpace(s))
 
 			return true
@@ -73,7 +73,7 @@ func (b *Book) Translators() []string {
 				return true
 			}
 
-			s = strings.Replace(s, "مترجم:", "", -1)
+			s = strings.ReplaceAll(s, "مترجم:", "")
 			translators = append(translators, strings.TrimSpace(s))
 
 			return true
