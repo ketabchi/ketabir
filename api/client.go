@@ -21,8 +21,6 @@ type urlFinder struct {
 	doc    *goquery.Document
 }
 
-var Client = &http.Client{}
-
 var chapRe = regexp.MustCompile(`چاپ ([\d]+) سال`)
 
 func GetBookURLByISBN(isbn string, args ...string) (string, error) {
@@ -30,7 +28,7 @@ func GetBookURLByISBN(isbn string, args ...string) (string, error) {
 		return "", nil
 	}
 
-	uf := &urlFinder{isbn: isbn, client: *Client}
+	uf := &urlFinder{isbn: isbn}
 	if len(args) > 0 {
 		uf.title = args[0]
 	}
@@ -90,10 +88,10 @@ func (uf *urlFinder) createBody() (io.Reader, error) {
 	data.Set("ctl00$SiteMenu$Search$DDLTypeSearch", "1")
 	data.Set("ctl00$ContentPlaceHolder1$TxtIsbn", uf.isbn)
 	data.Set("ctl00$ContentPlaceHolder1$drpDewey", "-1")
-	data.Set("ctl00$ContentPlaceHolder1$drpFromIssueYear", "57")
+	data.Set("ctl00$ContentPlaceHolder1$drpFromIssueYear", "1357")
 	data.Set("ctl00$ContentPlaceHolder1$drpFromIssueMonth", "01")
 	data.Set("ctl00$ContentPlaceHolder1$drpFromIssueDay", "01")
-	data.Set("ctl00$ContentPlaceHolder1$drpToIssueYear", "98")
+	data.Set("ctl00$ContentPlaceHolder1$drpToIssueYear", "1410")
 	data.Set("ctl00$ContentPlaceHolder1$drpToIssueMonth", "12")
 	data.Set("ctl00$ContentPlaceHolder1$drpToIssueDay", "30")
 	data.Set("ctl00$ContentPlaceHolder1$drLanguage", "0")
